@@ -15,39 +15,39 @@ SQL>     -> run SQL command and otput
 -------------------------------------------------------------
 
 
--- go to home directory
+--go to home directory
 # cd /
 # cd home
 
 
--- installing net-tools
+--installing net-tools
 # sudo yum -y install net-tools
 
 
--- check if sshd service already installed (for remote server)
+--check if sshd service already installed (for remote server)
 # systemctl status sshd
 
--- if not intalled, run this instalaton command
+--if not intalled, run this instalaton command
 # sudo dnf install openssh openssh-server
 
--- start sshd service
+--start sshd service
 # sudo systemctl start sshd
 
--- reference document : https://docs.oracle.com/en/operating-systems/oracle-linux/openssh/openssh-ConfiguringOpenSSHServer.html#config-openssh-server
+--reference document : https://docs.oracle.com/en/operating-systems/oracle-linux/openssh/openssh-ConfiguringOpenSSHServer.html#config-openssh-server
 
 
 --install MySQL 8.4
 
--- download from MySQL repository
+--download from MySQL repository
 # curl -sSLO https://dev.mysql.com/get/mysql84-community-release-el7-1.noarch.rpm
 
--- check intregity after download, output must be the same with this documentation
+--check intregity after download, output must be the same with this documentation
 # md5sum mysql84-community-release-el7-1.noarch.rpm
 
 +output
 a3541dff58744c344d8930518b87c289 mysql84-community-release-el7-1.noarch.rpm
 
--- add new MySQL yum repositories, use to install MySQL server
+--add new MySQL yum repositories, use to install MySQL server
 # sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
 
 +output
@@ -59,7 +59,7 @@ Updating / installing...
 [root@localhost ~]#
 
 
--- installing MySQL Server
+--installing MySQL Server
 # sudo yum install mysql-server
 
 +output
@@ -74,7 +74,7 @@ Install  3 Packages (+31 Dependent packages)
 Total download size: 95 M
 Is this ok [y/d/N]: y
 
--- type y to continue install
+--type y to continue install
 
 +output
 Downloading packages:
@@ -97,7 +97,7 @@ Importing GPG key 0xA8D3785C:
  From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2023
 Is this ok [y/N]: y
 
--- type y to continue install
+--type y to continue install
 
 +output
 ....
@@ -136,13 +136,13 @@ Replaced:
 Complete!
 
 
--- starting mysqld service
+--starting mysqld service
 # sudo systemctl start
 
 +output
 no output
 
--- check status mysqld service, make sure status is active (running)
+--check status mysqld service, make sure status is active (running)
 # sudo systemctl status mysqld
 
 +output
