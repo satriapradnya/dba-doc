@@ -1,0 +1,55 @@
+Oracle Linux 7.9 (OL-7.9)
+##########################
+
+Guide for documentation
+-------------------------------------------------------------
+
+--      -> step, guide, or information about documentation
+#       -> command on terminal using root user
+$	      -> command on terminal using standard user
+SQL>    -> run SQL command and otput
++output -> output after execute command
+
+-------------------------------------------------------------
+
+
+-- go to home directory
+# cd /
+# cd home
+
+
+-- installing net-tools
+# sudo yum -y install net-tools
+
+
+-- check if sshd service already installed (for remote server)
+# systemctl status sshd
+
+-- if not intalled, run this instalaton command
+# sudo dnf install openssh openssh-server
+
+-- start sshd service
+# sudo systemctl start sshd
+
+-- reference document : https://docs.oracle.com/en/operating-systems/oracle-linux/openssh/openssh-ConfiguringOpenSSHServer.html#config-openssh-server
+
+
+--install MySQL 8.4
+
+-- download from MySQL repository
+# curl -sSLO https://dev.mysql.com/get/mysql84-community-release-el7-1.noarch.rpm
+
+-- check intregity after download
+# md5sum mysql80-community-release-el7-5.noarch.rpm
+
++output
+a3541dff58744c344d8930518b87c289 mysql84-community-release-el7-1.noarch.rpm
+
+
+
+
+
+------------------------------
+-- list all service
+
+$ systemctl list-units --type=service
