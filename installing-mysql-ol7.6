@@ -60,6 +60,30 @@ Updating / installing...
 -- installing MySQL Server
 # sudo yum install mysql-server
 
++output
+ perl-podlators                         noarch         2.5.1-3.el7                ol7_latest                      111 k
+ perl-threads                           x86_64         1.87-4.el7                 ol7_latest                       48 k
+ perl-threads-shared                    x86_64         1.43-6.el7                 ol7_latest                       38 k
+
+Transaction Summary
+========================================================================================================================
+Install  3 Packages (+31 Dependent packages)
+
+Total download size: 95 M
+Is this ok [y/d/N]: y
+
+-- type y to continue install
+
++output
+Downloading packages:
+warning: /var/cache/yum/x86_64/7Server/mysql-8.4-lts-community/packages/mysql-community-client-plugins-8.4.2-1.el7.x86_64.rpm: Header V4 RSA/SHA256 Signature, key ID a8d3785c: NOKEY
+Public key for mysql-community-client-plugins-8.4.2-1.el7.x86_64.rpm is not installed
+(1/34): mysql-community-client-plugins-8.4.2-1.el7.x86_64.rpm                                    | 3.5 MB  00:00:05
+(2/34): mysql-community-common-8.4.2-1.el7.x86_64.rpm                                            | 690 kB  00:00:00
+(3/34): mysql-community-icu-data-files-8.4.2-1.el7.x86_64.rpm                                    | 2.2 MB  00:00:02
+(4/34): mysql-community-libs-8.4.2-1.el7.x86_64.rpm                                              | 1.5 MB  00:00:0
+
+
 -- starting mysqld service
 # sudo systemctl start mysqld
 
