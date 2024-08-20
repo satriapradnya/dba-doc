@@ -12,7 +12,6 @@ $	      -> command on terminal using standard user
 SQL>     -> run SQL command and otput
 +output  -> output after execute command
 
-
 -------------------------------------------------------------
 
 
@@ -59,6 +58,7 @@ Updating / installing...
    1:mysql84-community-release-el7-1  ################################# [100%]
 [root@localhost ~]#
 
+
 -- installing MySQL Server
 # sudo yum install mysql-server
 
@@ -98,6 +98,8 @@ Importing GPG key 0xA8D3785C:
 Is this ok [y/N]: y
 
 -- type y to continue install
+
++output
 ....
   Installing : mysql-community-icu-data-files-8.4.2-1.el7.x86_64                                                  32/35
   Installing : mysql-community-server-8.4.2-1.el7.x86_64                                                          33/35
@@ -133,13 +135,14 @@ Replaced:
 
 Complete!
 
+
 -- starting mysqld service
 # sudo systemctl start
 
 +output
 no output
 
--- check status mysqld service, make sure status is active
+-- check status mysqld service, make sure status is active (running)
 # sudo systemctl status mysqld
 
 +output
@@ -157,6 +160,19 @@ no output
 Aug 20 01:28:59 localhost.localdomain systemd[1]: Starting MySQL Server...
 Aug 20 01:29:19 localhost.localdomain systemd[1]: Started MySQL Server.
 [root@localhost ~]#
+
+
+
+DONE
+##########################
+
+
+
+
+
+
+
+
 
 
 
