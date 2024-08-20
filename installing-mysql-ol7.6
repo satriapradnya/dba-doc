@@ -46,13 +46,22 @@ SQL>    -> run SQL command and otput
 +output
 a3541dff58744c344d8930518b87c289 mysql84-community-release-el7-1.noarch.rpm
 
--- installing MySQL Server
-sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
+-- add new MySQL yum repositories, use to install MySQL server
+# sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
 
 +output
+[root@localhost ~]# sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
+warning: mysql84-community-release-el7-1.noarch.rpm: Header V4 RSA/SHA256 Signature, key ID a8d3785c: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:mysql84-community-release-el7-1  ################################# [100%]
+[root@localhost ~]#
 
+-- installing MySQL Server
+# sudo yum install mysql-server
 
-
+-- starting mysqld service
+# sudo systemctl start mysqld
 
 
 
