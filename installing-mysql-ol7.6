@@ -23,15 +23,36 @@ SQL>     -> run SQL command and otput
 --installing net-tools
 # sudo yum -y install net-tools
 
++output
+soon
 
---check if sshd service already installed (for remote server)
-# systemctl status sshd
-
---if not intalled, run this instalaton command
+--installing openssh service
 # sudo dnf install openssh openssh-server
 
---start sshd service
-# sudo systemctl start sshd
++output
+soon
+
+--check ssh service status
+-- if ssh not active, use start command on troubleshooting guide at the end of this page
+# systemctl status sshd
+
++output
+● sshd.service - OpenSSH server daemon
+   Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2024-08-20 03:14:28 EDT; 55s ago
+     Docs: man:sshd(8)
+           man:sshd_config(5)
+ Main PID: 1095 (sshd)
+   CGroup: /system.slice/sshd.service
+           └─1095 /usr/sbin/sshd -D
+
+Aug 20 03:14:28 localhost.localdomain systemd[1]: Starting OpenSSH server daemon...
+Aug 20 03:14:28 localhost.localdomain sshd[1095]: Server listening on 0.0.0.0 port 22.
+Aug 20 03:14:28 localhost.localdomain sshd[1095]: Server listening on :: port 22.
+Aug 20 03:14:28 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+Aug 20 03:15:16 localhost.localdomain sshd[1734]: Accepted password for root from 192.168.1.18 port 50149 ssh2
+[root@localhost ~]#
+
 
 --reference document : https://docs.oracle.com/en/operating-systems/oracle-linux/openssh/openssh-ConfiguringOpenSSHServer.html#config-openssh-server
 
@@ -40,6 +61,9 @@ SQL>     -> run SQL command and otput
 
 --download from MySQL repository
 # curl -sSLO https://dev.mysql.com/get/mysql84-community-release-el7-1.noarch.rpm
+
++output
+no output
 
 --check intregity after download, output must be the same with this documentation
 # md5sum mysql84-community-release-el7-1.noarch.rpm
@@ -51,7 +75,6 @@ a3541dff58744c344d8930518b87c289 mysql84-community-release-el7-1.noarch.rpm
 # sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
 
 +output
-[root@localhost ~]# sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
 warning: mysql84-community-release-el7-1.noarch.rpm: Header V4 RSA/SHA256 Signature, key ID a8d3785c: NOKEY
 Preparing...                          ################################# [100%]
 Updating / installing...
@@ -181,8 +204,15 @@ DONE
 
 
 
-Other command (Not documented yet, for troubleshooting)
+Other command for troubleshooting
 -------------------------------------------------------------
 
 -- list all service
 # systemctl list-units --type=service
+
+
+--start sshd service
+# sudo systemctl start sshd
+
++output
+no output
