@@ -15,25 +15,29 @@ SQL>     -> run SQL command and otput
 -------------------------------------------------------------
 
 
---go to home directory
+-- use super user privillege
+$ sudo su
+
+
+-- go to home directory
 # cd /
 # cd home
 
 
---installing net-tools
+-- installing net-tools
 # sudo yum -y install net-tools
 
 +output
 soon
 
---installing openssh service
+-- installing open ssh service
 # sudo dnf install openssh openssh-server
 
 +output
 soon
 
---check ssh service status
--- if ssh not active, use start command on troubleshooting guide at the end of this page
+-- check ssh service status
+-- if ssh not active, see start sshd service command on troubleshooting guide at the end of this page
 # systemctl status sshd
 
 +output
@@ -53,25 +57,24 @@ Aug 20 03:14:28 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
 Aug 20 03:15:16 localhost.localdomain sshd[1734]: Accepted password for root from 192.168.1.18 port 50149 ssh2
 [root@localhost ~]#
 
+-- reference document : https://docs.oracle.com/en/operating-systems/oracle-linux/openssh/openssh-ConfiguringOpenSSHServer.html#config-openssh-server
 
---reference document : https://docs.oracle.com/en/operating-systems/oracle-linux/openssh/openssh-ConfiguringOpenSSHServer.html#config-openssh-server
 
+-- install MySQL 8.4
 
---install MySQL 8.4
-
---download from MySQL repository
+-- download package from MySQL repository
 # curl -sSLO https://dev.mysql.com/get/mysql84-community-release-el7-1.noarch.rpm
 
 +output
 no output
 
---check intregity after download, output must be the same with this documentation
+-- check intregity after download, output must be the same with this documentation
 # md5sum mysql84-community-release-el7-1.noarch.rpm
 
 +output
 a3541dff58744c344d8930518b87c289 mysql84-community-release-el7-1.noarch.rpm
 
---add new MySQL yum repositories, use to install MySQL server
+-- install package MySQL
 # sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
 
 +output
@@ -81,8 +84,57 @@ Updating / installing...
    1:mysql84-community-release-el7-1  ################################# [100%]
 [root@localhost ~]#
 
+-- view installed MySQL package
+# yum repolist all | grep mysql
 
---installing MySQL Server
++ output
+!mysql-8.4-lts-community/x86_64                     MySQL 8.4 LT enabled:     23
+mysql-8.4-lts-community-debuginfo/x86_64            MySQL 8.4 LT disabled
+mysql-8.4-lts-community-source                      MySQL 8.4 LT disabled
+mysql-cluster-8.0-community/x86_64                  MySQL Cluste disabled
+mysql-cluster-8.0-community-debuginfo/x86_64        MySQL Cluste disabled
+mysql-cluster-8.0-community-source                  MySQL Cluste disabled
+mysql-cluster-8.4-lts-community/x86_64              MySQL Cluste disabled
+mysql-cluster-8.4-lts-community-debuginfo/x86_64    MySQL Cluste disabled
+mysql-cluster-8.4-lts-community-source              MySQL Cluste disabled
+mysql-cluster-innovation-community/x86_64           MySQL Cluste disabled
+mysql-cluster-innovation-community-debuginfo/x86_64 MySQL Cluste disabled
+mysql-cluster-innovation-community-source           MySQL Cluste disabled
+!mysql-connectors-community/x86_64                  MySQL Connec enabled:    258
+mysql-connectors-community-debuginfo/x86_64         MySQL Connec disabled
+mysql-connectors-community-source                   MySQL Connec disabled
+mysql-innovation-community/x86_64                   MySQL Innova disabled
+mysql-innovation-community-debuginfo/x86_64         MySQL Innova disabled
+mysql-innovation-community-source                   MySQL Innova disabled
+!mysql-tools-8.4-lts-community/x86_64               MySQL Tools  enabled:      4
+mysql-tools-8.4-lts-community-debuginfo/x86_64      MySQL Tools  disabled
+mysql-tools-8.4-lts-community-source                MySQL Tools  disabled
+mysql-tools-community/x86_64                        MySQL Tools  disabled
+mysql-tools-community-debuginfo/x86_64              MySQL Tools  disabled
+mysql-tools-community-source                        MySQL Tools  disabled
+mysql-tools-innovation-community/x86_64             MySQL Tools  disabled
+mysql-tools-innovation-community-debuginfo/x86_64   MySQL Tools  disabled
+mysql-tools-innovation-community-source             MySQL Tools  disabled
+mysql80-community/x86_64                            MySQL 8.0 Co disabled
+mysql80-community-debuginfo/x86_64                  MySQL 8.0 Co disabled
+mysql80-community-source                            MySQL 8.0 Co disabled
+
+-- list with ! symbol above means the package is enabled
+-- before installing MySQL, make sure the desired MySQL package is activated
+-- in this documentation we use mysql-8.4-lts-community/x86_64
+
+-- optional : you can disable the current sql package and enable another version of the mysql package you want to install
+
+-- optional : script to disable mysql packgage
+# yum-config-manager --disable mysql-8.4-lts-community/x86_64
+
+-- optional : script to enable MySQL packgage
+# yum-config-manager --enable mysql80-community/x86_64
+
+-- if you want to install older version of mysql package, see the additional guide at the end of this page
+
+
+-- installing MySQL Server
 # sudo yum install mysql-server
 
 +output
@@ -97,7 +149,7 @@ Install  3 Packages (+31 Dependent packages)
 Total download size: 95 M
 Is this ok [y/d/N]: y
 
---type y to continue install
+-- type y to continue install
 
 +output
 Downloading packages:
@@ -120,7 +172,7 @@ Importing GPG key 0xA8D3785C:
  From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql-2023
 Is this ok [y/N]: y
 
---type y to continue install
+-- type y to continue install
 
 +output
 ....
@@ -159,13 +211,13 @@ Replaced:
 Complete!
 
 
---starting mysqld service
+-- starting mysqld service
 # sudo systemctl start mysqld
 
 +output
 no output
 
---check status mysqld service, make sure status is active (running)
+-- check status mysqld service, make sure status is active (running)
 # sudo systemctl status mysqld
 
 +output
@@ -194,17 +246,14 @@ DONE
 
 
 
+Additional Guide
+-------------------------------------------------------------
+
+-- download and install older version of mysql package
+-- soon
 
 
-
-
-
-
-
-
-
-
-Other command for troubleshooting
+Troubleshooting Guide
 -------------------------------------------------------------
 
 --list all service
