@@ -11,3 +11,6 @@ Guide for this documentation, base on file name
 
 -- config_
 -> configuration server database
+
+-- knowledge_
+-> more information abaut documentation
