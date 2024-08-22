@@ -1,1 +1,31 @@
 soon
+
+
+[root@localhost ~]# sudo grep 'password' /var/log/mysqld.log
+2024-08-20T05:29:07.136093Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: upe6.y8jdC!g
+[root@localhost ~]#
+
+[root@localhost ~]# sudo mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Enter password for user root:
+
+The existing password for the user account root has expired. Please set a new password.
+
+New password:
+
+Re-enter new password:
+ ... Failed! Error: Your password does not satisfy the current policy requirements
+
+New password:
+- @Mysql123
+
+Re-enter new password:
+The 'validate_password' component is installed on the server.
+The subsequent steps will run with the existing configuration
+of the component.
+Using existing password for root.
+
+Estimated strength of the password: 100
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : y
