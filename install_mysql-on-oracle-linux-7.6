@@ -241,6 +241,10 @@ Aug 20 01:29:19 localhost.localdomain systemd[1]: Started MySQL Server.
 DONE
 ##########################
 
+-- Next Step, configure mysql user
+-- https://github.com/satriapradnya/mysql-dba-doc/blob/main/config_mysql-user-profile
+
+
 
 
 
@@ -250,7 +254,21 @@ Additional Guide
 -------------------------------------------------------------
 
 -- download and install older version of mysql package
--- soon
+
+-- download package from MySQL repository
+# curl -sSLO https://dev.mysql.com/get/mysql84-community-release-el7-1.noarch.rpm
+
++output
+no output
+
+-- check intregity after download, output must be the same with this documentation
+# md5sum mysql84-community-release-el7-1.noarch.rpm
+
++output
+a3541dff58744c344d8930518b87c289 mysql84-community-release-el7-1.noarch.rpm
+
+-- install package MySQL
+# sudo rpm -ivh mysql84-community-release-el7-1.noarch.rpm
 
 
 Troubleshooting Guide
