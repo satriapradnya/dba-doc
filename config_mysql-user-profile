@@ -81,6 +81,7 @@ mysql> CREATE USER satria@localhost IDENTIFIED BY 'Satria123!';
 Query OK, 0 rows affected (0.08 sec)
 
 
+
 DONE
 ##########################
 
