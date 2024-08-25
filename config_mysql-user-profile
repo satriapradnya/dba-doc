@@ -1,9 +1,9 @@
 Oracle Linux 7.9 (OL-7.9)
 Config root password MySQL  8.4
-##########################
+#################################
 
 Guide for documentation
--------------------------------------------------------------
+*************************************************************
 
 --       -> step, guide, or information about documentation
 ....     -> Et cetera, which means "and the rest."
@@ -12,7 +12,7 @@ $        -> command on terminal using standard user
 +output  -> output after execute command
 SQL>     -> run SQL command and otput
 
--------------------------------------------------------------
+*************************************************************
 
 
 -- get temporary root password
@@ -48,4 +48,22 @@ Change the password for root ? ((Press y|Y for Yes, any other key for No) : n
 -- New password: @Mysql123
 
 
--- login to 
+-- login to mysql database
+# mysql -u root -p
+
++output
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.4.2 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+
