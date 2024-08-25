@@ -47,15 +47,13 @@ Using existing password for root.
 Estimated strength of the password: 100
 Change the password for root ? ((Press y|Y for Yes, any other key for No) : no
 
--Change the password for root ? ((Press y|Y for Yes, any other key for No) : no
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : yes
 
--Remove anonymous users? (Press y|Y for Yes, any other key for No) : yes
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : no
 
--Disallow root login remotely? (Press y|Y for Yes, any other key for No) : no
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : yes
 
--Remove test database and access to it? (Press y|Y for Yes, any other key for No) : yes
-
--Reload privilege tables now? (Press y|Y for Yes, any other key for No) : yes
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : yes
 
 
 -- login to mysql database
