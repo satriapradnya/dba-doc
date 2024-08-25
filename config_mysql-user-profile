@@ -10,7 +10,7 @@ Guide for documentation
 #        -> command on terminal using root user
 $        -> command on terminal using standard user
 +output  -> output after execute command
-SQL>     -> run SQL command and otput
+mysql>     -> run SQL command and otput
 
 *************************************************************
 
@@ -65,5 +65,20 @@ owners.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-mysql>
+
+-- create new user for mysql
+-- username : satria
+-- password : Satria123!
+mysql> CREATE USER satria@localhost IDENTIFIED BY 'Satria123!';
+Query OK, 0 rows affected (0.08 sec)
+
+
+DONE
+##########################
+
+-- Next Step, create new database
+-- https://github.com/satriapradnya/mysql-dba-doc/blob/main/database_create-new-database
+
+
+
 
