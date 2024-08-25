@@ -84,7 +84,7 @@ Query OK, 0 rows affected (0.08 sec)
 
 -- grant all privillege to user satria
 GRANT ALL PRIVILEGES
-ON mydb.*
+ON gudang.*
 TO 'satria'@'localhost'
 WITH GRANT OPTION;
 
