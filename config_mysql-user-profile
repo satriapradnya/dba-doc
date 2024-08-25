@@ -37,6 +37,8 @@ New password:
 
 Re-enter new password:
 
+-- New password: @Mysql123
+
 The 'validate_password' component is installed on the server.
 The subsequent steps will run with the existing configuration
 of the component.
@@ -45,7 +47,15 @@ Using existing password for root.
 Estimated strength of the password: 100
 Change the password for root ? ((Press y|Y for Yes, any other key for No) : n
 
--- New password: @Mysql123
+-Change the password for root ? ((Press y|Y for Yes, any other key for No) : n
+
+-Remove anonymous users? (Press y|Y for Yes, any other key for No) : yes
+
+-Disallow root login remotely? (Press y|Y for Yes, any other key for No) : no
+
+-Remove test database and access to it? (Press y|Y for Yes, any other key for No) : yes
+
+-Reload privilege tables now? (Press y|Y for Yes, any other key for No) : yes
 
 
 -- login to mysql database
