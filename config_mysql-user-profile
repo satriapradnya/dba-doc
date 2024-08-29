@@ -74,22 +74,6 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 
--- create new user for mysql
--- username : satria
--- password : Satria123!
-mysql> CREATE USER satria@localhost IDENTIFIED BY 'Satria123!';
-
-+output
-Query OK, 0 rows affected (0.08 sec)
-
--- grant all privillege to user satria
-GRANT ALL PRIVILEGES
-ON gudang.*
-TO 'satria'@'localhost'
-WITH GRANT OPTION;
-
-+output
-Query OK, 0 rows affected (0.10 sec)
 
 
 
@@ -98,6 +82,26 @@ DONE
 
 -- Next Step, create new database
 -- https://github.com/satriapradnya/mysql-dba-doc/blob/main/database_create-new-database
+
+
+
+
+
+--optional
+-- create new user for mysql
+-- username : satria
+-- password : Satria123!
+mysql> CREATE USER satria@localhost IDENTIFIED BY 'Satria123!';
+
++output
+Query OK, 0 rows affected (0.08 sec)
+
+-- grant remote access to user satria
+UPDATE mysql.user SET Host='%' WHERE Host='localhost' AND User='satria';
+
++output
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
 
 
