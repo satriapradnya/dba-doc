@@ -96,13 +96,14 @@ mysql> CREATE USER satria@localhost IDENTIFIED BY 'Satria123!';
 +output
 Query OK, 0 rows affected (0.08 sec)
 
--- grant remote access to user satria
+-- grant change host to user satria
+-- satria@localhost mean this user can login only from local host
+-- satria@% mean this user can login from all host
 UPDATE mysql.user SET Host='%' WHERE Host='localhost' AND User='satria';
 
 +output
 Query OK, 1 row affected (0.06 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
-
 
 --flush privillege
 mysql> FLUSH PRIVILEGES;
@@ -110,6 +111,36 @@ mysql> FLUSH PRIVILEGES;
 +output
 Query OK, 0 rows affected (0.01 sec)
 
+
+-- enable firewall to remote access to mysql port
+# firewall-cmd --permanent --zone=public --add-port=3306/tcp
+
++output
+no output
+
+-- reload firewalld
+firewall-cmd --reload
+
++output
+success
+
+-- show allowed port on firewalld
+# firewall-cmd --list-all
+
++output
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: enp0s3
+  sources:
+  services: dhcpv6-client ssh
+  ports: 3306/tcp
+  protocols:
+  masquerade: no
+  forward-ports:
+  source-ports:
+  icmp-blocks:
+  rich rules:
 
 
 
