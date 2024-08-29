@@ -104,6 +104,12 @@ Query OK, 1 row affected (0.06 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
 
+--flush privillege
+mysql> FLUSH PRIVILEGES;
+
++output
+Query OK, 0 rows affected (0.01 sec)
+
 
 
 
