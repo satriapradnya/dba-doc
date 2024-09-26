@@ -15,9 +15,9 @@ mysql>     -> run SQL command and otput
 *************************************************************
 
 
--- login to mysql database
--- password : Satria123!
-# mysql -u satria -p
+-- login to mysql database using root user
+-- password : @Mysql123
+# mysql -u root -p
 
 +output
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -43,3 +43,12 @@ mysql>  show databases;
 | performance_schema |
 +--------------------+
 2 rows in set (0.01 sec)
+
+
+
+
+DONE
+##########################
+
+-- Next Step, configure user privilege
+-- https://github.com/satriapradnya/mysql-dba-doc/blob/main/database_create-new-database
