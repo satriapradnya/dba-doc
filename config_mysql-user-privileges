@@ -1,1 +1,115 @@
+Oracle Linux 7.6 (OL-7.6)
+Config root password MySQL  8.4
+#################################
 
+Guide for documentation
+*************************************************************
+
+--       -> step, guide, or information about documentation
+....     -> Et cetera, which means "and the rest."
+#        -> command on terminal using root user
+$        -> command on terminal using standard user
++output  -> output after execute command
+mysql>     -> run SQL command and otput
+
+*************************************************************
+
+
+-- from root user, create new user for mysql
+-- username : satriapradnya
+-- password : Satria123!
+mysql> CREATE USER satriapradnya@localhost IDENTIFIED BY 'Satria123!';
+
++output
+Query OK, 0 rows affected (0.08 sec)
+
+
+-- list all user
+mysql> select user, host from mysql.user;
+
++output
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
+| satriapradnya    | localhost |
++------------------+-----------+
+5 rows in set (0.00 sec)
+
+-- change host to user satria to allow remote login
+-- satriapradnya@localhost mean this user can login only from local host
+-- satriapradnya@% mean this user can login from any host
+mysql> UPDATE mysql.user SET Host='%' WHERE Host='localhost' AND User='satriapradnya';
+
++output
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+--flush privillege
+mysql> FLUSH PRIVILEGES;
+
++output
+Query OK, 0 rows affected (0.01 sec)
+
+-- list all user after change host
+mysql> select user, host from mysql.user;
+
++output
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| satriapradnya    | %         |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
++------------------+-----------+
+5 rows in set (0.01 sec)
+
+-- Hierarchy privileges for MySQL user
+-- There are 3 privileges for the MySQL user including :
+-- global privilege (the global level contains the MySQL server system)
+-- database privilege ()
+-- table privilege ()
+
+-- first, show grants for user satria pradnya
+
+When you grant privileges at a level, those privileges are available at that and all lower levels.
+In Figure 9-1, if you grant privileges at the global level, 
+those privileges are available for MySQL server functions and throughout
+the databases, tables, and columns. 
+For example, if you have the UPDATE privilege at the global level, you can execute 
+the UPDATE statement on any table or column in any database. 
+If you grant privileges for only the music database, the privileges 
+are available for just it and its tables and columns. Privileges never propagate up the hierarchy;
+
+mysql> SHOW GRANTS FOR 'satriapradnya'@'%';
+
++output
++-------------------------------------------+
+| Grants for satriapradnya@%                |
++-------------------------------------------+
+| GRANT USAGE ON *.* TO `satriapradnya`@`%` |
++-------------------------------------------+
+1 row in set (0.00 sec)
+
+GRANT SELECT ON *.* TO 'satriapradnya'@'%';
+GRANT SELECT, UPDATE ON gudang.* TO 'satriapradnya'@'%';
+GRANT DELETE ON gudang.barang* TO 'satriapradnya'@'%';
+
+mysql> SHOW GRANTS FOR 'satriapradnya'@'%';
++-----------------------------------------------------------+
+| Grants for satriapradnya@%                                |
++-----------------------------------------------------------+
+| GRANT SELECT ON *.* TO `satriapradnya`@`%`                |
+| GRANT SELECT, UPDATE ON `gudang`.* TO `satriapradnya`@`%` |
+| GRANT DELETE ON `gudang`.`barang` TO `satriapradnya`@`%`  |
++-----------------------------------------------------------+
+3 rows in set (0.00 sec)
+
+
+DONE
+##########################
