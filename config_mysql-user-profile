@@ -1,4 +1,4 @@
-Oracle Linux 7.9 (OL-7.9)
+Oracle Linux 7.6 (OL-7.6)
 Config root password MySQL  8.4
 #################################
 
@@ -84,33 +84,7 @@ DONE
 -- https://github.com/satriapradnya/mysql-dba-doc/blob/main/database_create-new-database
 
 
-
-
-
 --optional
--- create new user for mysql
--- username : satria
--- password : Satria123!
-mysql> CREATE USER satria@localhost IDENTIFIED BY 'Satria123!';
-
-+output
-Query OK, 0 rows affected (0.08 sec)
-
--- grant change host to user satria
--- satria@localhost mean this user can login only from local host
--- satria@% mean this user can login from all host
-UPDATE mysql.user SET Host='%' WHERE Host='localhost' AND User='satria';
-
-+output
-Query OK, 1 row affected (0.06 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
-
---flush privillege
-mysql> FLUSH PRIVILEGES;
-
-+output
-Query OK, 0 rows affected (0.01 sec)
-
 
 -- enable firewall to remote access to mysql port
 # firewall-cmd --permanent --zone=public --add-port=3306/tcp
@@ -143,6 +117,11 @@ public (active)
   rich rules:
 
 
+-- allow remote access to root user (not recommended for security reason)
+-- root@localhost mean this user can login only from local host
+-- root@% mean this user can login from all host
+mysql> UPDATE mysql.user SET Host='%' WHERE Host='localhost' AND User='root';
 
-
-
++output
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
